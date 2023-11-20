@@ -1,9 +1,21 @@
 import sys
 import utils
-from inputs import boundary_params
 
 
 def run(sim_params):
+    #### BOUNDARY SPECIFICATIONS
+    u_in = 1  # Lid velocity
+    v_wall = 0  # Velocity of fluid at the walls
+    p_out = 0  # Gauge pressure at the boundaries
+
+    # Create objects of the class Boundary having either Dirichlet ("D") or Neumann ("N") type boundaries
+    boundary_params = {
+        "flow": utils.Boundary("D", u_in),
+        "noslip": utils.Boundary("D", v_wall),
+        "zeroflux": utils.Boundary("N", 0),
+        "pressureatm": utils.Boundary("D", p_out),
+    }
+
     ####  Unpack simulation parameter dictionary
     time = sim_params["time"]
     CFL_number = sim_params["CFL_number"]
