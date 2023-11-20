@@ -308,7 +308,7 @@ def SetCentrePUV(space):
 def MakeResultDirectory(wipe=False):
     # Get path to the Result directory
     cwdir = os.getcwd()
-    dir_path = os.path.join(cwdir, "Result")
+    dir_path = os.path.join(cwdir, "results")
     # If directory does not exist, make it
     if not os.path.isdir(dir_path):
         os.makedirs(dir_path, exist_ok=True)
@@ -325,7 +325,7 @@ def MakeResultDirectory(wipe=False):
 
 def WriteToFile(space, iteration, interval):
     if iteration % interval == 0:
-        dir_path = os.path.join(os.getcwd(), "Result")
+        dir_path = os.path.join(os.getcwd(), "results")
         filename = "PUV{0}.txt".format(iteration)
         path = os.path.join(dir_path, filename)
         with open(path, "w") as f:
